@@ -7,15 +7,13 @@ class InventoryTracker:
 
     def __init__(self, event_bus):
         self.event_bus = event_bus
-        self.items = {}  # item_id -> Item
+        self.items = {}  
 
-        # Register relevant event listeners
         event_bus.register_listener(inv_ev.ITEM_ADDED, self.on_item_added)
         event_bus.register_listener(inv_ev.ITEM_REMOVED, self.on_item_removed)
         event_bus.register_listener(inv_ev.INVENTORY_CHECK, self.on_inventory_check)
 
     def on_item_added(self, item_id, quantity, name=None, location=None):
-        # If item doesn't exist, create it
         if item_id not in self.items:
             self.items[item_id] = Item(item_id, name or "Unknown", 0, location or "Unknown")
         self.items[item_id].quantity += quantity
@@ -29,8 +27,7 @@ class InventoryTracker:
                 self.items[item_id].quantity = 0
             print(f"[InventoryTracker] Removed {quantity} of {item_id}, total is now {self.items[item_id].quantity}.")
             
-            # Check if stock is low
-            if self.items[item_id].quantity < 3:  # example threshold
+            if self.items[item_id].quantity < 3:  
                 self.event_bus.emit(ALERT_RAISED,
                     title="Low Stock",
                     message=f"Item {item_id} is running low: {self.items[item_id].quantity} in stock."

@@ -8,7 +8,6 @@ from .agents.agv_controller import AGVController
 from .agents.rfid_sensor import RFIDSensor
 from .agents.alert_system import AlertSystem
 
-# Event constants
 from .events import order_events as ord_ev
 from .events import inventory_events as inv_ev
 from .events import alert_events as al_ev
@@ -22,17 +21,14 @@ class WarehouseApp(tk.Tk):
         self.title("Warehouse Management System")
         self.geometry("900x500")
 
-        # Initialize the event bus
         self.event_bus = EventBus()
 
-        # Initialize agents
         self.inventory_tracker = InventoryTracker(self.event_bus)
         self.order_processor = OrderProcessor(self.event_bus)
         self.agv_controller = AGVController(self.event_bus)
         self.rfid_sensor = RFIDSensor(self.event_bus)
         self.alert_system = AlertSystem(self.event_bus)
 
-        # Build GUI
         self.notebook = ttk.Notebook(self)
         self.notebook.pack(expand=True, fill=tk.BOTH)
 
@@ -92,7 +88,7 @@ class WarehouseApp(tk.Tk):
 
         
 
-        self.inventory_tree = ttk.Treeview(  ###############
+        self.inventory_tree = ttk.Treeview(  
             inventory_list_frame,
             columns=("ItemID", "Name", "Quantity", "Location"),
             show="headings"
@@ -120,7 +116,6 @@ class WarehouseApp(tk.Tk):
             return
 
         quantity = int(quantity_str)
-        # Emit an event to add an item
         self.rfid_sensor.simulate_item_arrival(item_id, quantity, name=name, location=location)
         messagebox.showinfo("Success", f"Added {quantity} of {name} to inventory.")
         self._refresh_inventory_view()
@@ -134,19 +129,16 @@ class WarehouseApp(tk.Tk):
             return
 
         quantity = int(quantity_str)
-        # Emit an event to remove item
         self.rfid_sensor.simulate_item_departure(item_id, quantity)
         messagebox.showinfo("Success", f"Removed {quantity} of {item_id} from inventory.")
         self._refresh_inventory_view()
 
-    def _refresh_inventory_view(self):   ###########
-    # Clear the tree
+    def _refresh_inventory_view(self):   
         for row in self.inventory_tree.get_children():
             self.inventory_tree.delete(row)
 
         items = self.inventory_tracker.get_all_items()
         for item in items:
-        # Insert with the new ItemID column
             self.inventory_tree.insert(
                 "",
                 tk.END,
@@ -214,13 +206,11 @@ class WarehouseApp(tk.Tk):
                 return
             items_data.append({"item_id": idx, "quantity": int(q_str)})
 
-        # Emit event for order creation
         self.event_bus.emit(ord_ev.ORDER_CREATED, order_id=order_id, items=items_data)
         messagebox.showinfo("Success", f"Order {order_id} created!")
         self._refresh_orders_view()
 
     def _refresh_orders_view(self):
-        # Clear the tree
         for row in self.orders_tree.get_children():
             self.orders_tree.delete(row)
 
@@ -278,8 +268,6 @@ class WarehouseApp(tk.Tk):
         label = ttk.Label(agv_frame, text="AGV events occur automatically when an order is approved.\nCheck console logs for AGV activity.")
         label.pack(padx=10, pady=10)
 
-        # Additional UI could go here, e.g., AGV manual override, start/stop, etc.
-
 
 def main():
     app = WarehouseApp()
@@ -288,5 +276,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

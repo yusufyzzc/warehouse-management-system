@@ -5,7 +5,7 @@ class AlertSystem:
 
     def __init__(self, event_bus):
         self.event_bus = event_bus
-        self.alerts = []  # Keep a list of active alerts
+        self.alerts = []  
 
         event_bus.register_listener(ALERT_RAISED, self.on_alert_raised)
         event_bus.register_listener(ALERT_RESOLVED, self.on_alert_resolved)
