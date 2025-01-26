@@ -19,7 +19,9 @@ A Python-centric, event-driven application modeling warehouse operations such as
 ## Usage
 1. **Clone** this repository:
    ```bash
-   git clone https://github.com/YourUser/warehouse-management.git
+   git clone https://github.com/YourUser/warehouse-management-system.git
 
-2. **to run project**  python -m src.app
+2. **to run project**:  
+   ```bash
+   python -m src.app
 
