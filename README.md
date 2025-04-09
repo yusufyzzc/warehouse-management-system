@@ -21,7 +21,7 @@ for more information: https://medium.com/@yusufyzc/building-a-python-based-wareh
 ## Usage
 1. **Clone** this repository:
    ```bash
-   git clone https://github.com/yusufyazici01/warehouse-management-system.git
+   git clone https://github.com/yusufyzzc/warehouse-management-system.git
 
 2. **to run project**:  
    ```bash
