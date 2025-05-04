@@ -18,12 +18,7 @@ for more information: https://medium.com/@yusufyzc/building-a-python-based-wareh
 4. **`event_bus.py`** – Dispatches events to registered listeners.
 5. **`app.py`** – Orchestrates agent instantiation and (optionally) a GUI or CLI.
 
-## Usage
-1. **Clone** this repository:
-   ```bash
-   git clone https://github.com/yusufyzzc/warehouse-management-system.git
-
-2. **to run project**:  
+**to run project**:  
    ```bash
    python -m src.app
 
