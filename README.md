@@ -22,3 +22,4 @@ for more information: https://medium.com/@yusufyzc/building-a-python-based-wareh
    ```bash
    python -m src.app
 
+```
