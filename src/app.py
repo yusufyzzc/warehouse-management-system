@@ -24,7 +24,7 @@ class WarehouseApp(tk.Tk):
         self.event_bus = EventBus()
 
         self.inventory_tracker = InventoryTracker(self.event_bus)
-        self.order_processor = OrderProcessor(self.event_bus)
+        self.order_processor = OrderProcessor(self.event_bus, self.inventory_tracker)
         self.agv_controller = AGVController(self.event_bus)
         self.rfid_sensor = RFIDSensor(self.event_bus)
         self.alert_system = AlertSystem(self.event_bus)
