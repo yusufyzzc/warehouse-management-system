@@ -37,9 +37,9 @@ class WarehouseApp(tk.Tk):
         self._create_alerts_tab()
         self._create_agv_tab()
 
-    # ---------------------------
+
     # INVENTORY TAB
-    # ---------------------------
+
     def _create_inventory_tab(self):
         inventory_frame = ttk.Frame(self.notebook)
         self.notebook.add(inventory_frame, text="Inventory")
@@ -145,9 +145,9 @@ class WarehouseApp(tk.Tk):
                 values=(item.item_id, item.name, item.quantity, item.location)
             )
 
-    # ---------------------------
+
     # ORDERS TAB
-    # ---------------------------
+
     def _create_orders_tab(self):
         orders_frame = ttk.Frame(self.notebook)
         self.notebook.add(orders_frame, text="Orders")
@@ -219,9 +219,8 @@ class WarehouseApp(tk.Tk):
             item_summary = ", ".join([f"{i['item_id']} x{i['quantity']}" for i in order.items])
             self.orders_tree.insert("", tk.END, values=(order.status, item_summary))
 
-    # ---------------------------
     # ALERTS TAB
-    # ---------------------------
+
     def _create_alerts_tab(self):
         alerts_frame = ttk.Frame(self.notebook)
         self.notebook.add(alerts_frame, text="Alerts")
@@ -257,9 +256,8 @@ class WarehouseApp(tk.Tk):
             self.event_bus.emit(al_ev.ALERT_RESOLVED, title=title)
         self._refresh_alerts_view()
 
-    # ---------------------------
     # AGV / DIAGNOSTICS TAB
-    # ---------------------------
+
     def _create_agv_tab(self):
         agv_frame = ttk.Frame(self.notebook)
         self.notebook.add(agv_frame, text="AGV / Diagnostics")
