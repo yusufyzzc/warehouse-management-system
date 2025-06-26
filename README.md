@@ -2,7 +2,7 @@
 
 A Python based, event-driven application modeling warehouse operations such as inventory tracking, order processing and alerts. Includes an AGV controller and RFID sensor simulation for item movement.
 
-for more detailed information: [[https://medium.com/@yusufyzc/building-a-python-based-warehouse-management-system-using-event-driven-programming-6e5779c9913e](https://shorturl.at/oaZd5)]
+for more detailed information: [https://shorturl.at/oaZd5]
 
 ## Features
 - **Inventory Tracker** manages item quantities, raises low-stock alerts.
